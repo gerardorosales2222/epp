@@ -1,0 +1,14 @@
+body{
+    color: rgb(255, 255, 255);
+    background-color: rgb(32, 32, 32);
+}
+
+.btn-success{
+    background-color: #323232;
+    border: 1px solid #d0d0d0;
+}
+
+.btn-danger{
+    background-color: #323232;
+    border: 1px solid #d0d0d0;
+}

@@ -1,0 +1,56 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block title %}MINERA - EPP{%endblock%}
+
+{% block content %}
+    <!-- Masthead-->
+    <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Bienvenido al</div>
+                <div class="masthead-heading text-uppercase">Sistema de EPP</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'informacion' %}">+ info</a>
+            </div>
+    </header>
+    <!-- Services-->
+    <section class="page-section" id="operaciones">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Operaciones</h2>
+                <h3 class="section-subheading text-muted">Elija un área a administrar.</h3>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <a class="navbar-brand" href="{% url 'obreros' %}">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-solid fa-person-digging fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Obreros</h4>
+                    </a>
+                    <p class="text-muted">Lista de obreros actualmente activos en la planta de servicio. Seleccionar esta opción para verificar datos de los mismos.</p>
+                </div>
+                <div class="col-md-4">
+                    <a class="navbar-brand" href="{% url 'epps' %}">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-cubes fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Elementos en Stock</h4>
+                    </a>
+                        <p class="text-muted">En este apartado se puede ver el Stock actual de EPPs existentes en el pañol y también se puede dar de alta de nuevos elementos. 
+                        </p>
+                </div>
+                <div class="col-md-4">
+                    <a class="navbar-brand" href="{% url 'or' %}">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-file-circle-check fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="my-3">Ordenes de Retiro</h4>
+                    </a>
+                    <p class="text-muted">Administración de ORs. Alta, baja, modificaciones y despacho de Ordenes de Retiro. Lista de espera y verificación de las mismas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
