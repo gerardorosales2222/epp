@@ -12,17 +12,21 @@
         <thead>
         <tr>
             <th scope="col">Código</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Material</th>
+            <th scope="col">Obrero</th>
+            <th scope="col">EPP</th>
+            <th scope="col">Supervisor</th>
+            <th scope="col">Retirado</th>
             <th colspan="2"></th>
         </tr>
         </thead>
         <tbody>
-        {% for e in epps %}
+        {% for o in or %}
         <tr>
-            <th scope="row">{{e.id}}</th>
-            <td>{{e.nombre_epp}}</td>
-            <td>{{e.material}}</td>
+            <th scope="row">{{o.id}}</th>
+            <td>{{o.obrero}}</td>
+            <td>{{o.epp}}</td>
+            <td>{{o.supervisor}}</td>
+            <td>{{o.retirado}}</td>
             <td><a href="editar_servicio/{{s.id}}" class="btn btn-block btn-sm btn-success">Editar</a></td>
             <td><a href="eliminar_servicio/{{s.id}}" class="btn btn-block btn-sm btn-danger">Eliminar</a></td>
         </tr>

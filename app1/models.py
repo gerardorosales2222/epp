@@ -75,7 +75,7 @@ class epp(models.Model):
 class orden_de_retiro(models.Model):
     codigo = models.PositiveIntegerField()
     obrero = models.ForeignKey(obrero, on_delete=models.CASCADE, blank=True, null=True)
-    epp =models.ForeignKey(epp, on_delete=models.CASCADE, blank=True, null=True)
+    epp = models.ForeignKey(epp, on_delete=models.CASCADE, blank=True, null=True)
     supervisor = models.ForeignKey(supervisor, on_delete=models.CASCADE, blank=True, null=True)
     retirado = models.BooleanField(default=False)
     def __str__(self):
