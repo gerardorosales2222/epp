@@ -17,7 +17,9 @@ def soporte_tecnico(request):
     return render(request,'soporte.html')
 
 def obreros(request):
-    return render(request,'obreros.html')
+    o = obreros.objects.all()
+    lista={'obreros':o}
+    return render(request, 'obreros.html',lista)
 
 def epps(request):
     e = epp.objects.all()

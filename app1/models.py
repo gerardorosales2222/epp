@@ -10,7 +10,7 @@ class tipo_cargo(models.Model):
         verbose_name = 'tipo_cargo'
         verbose_name_plural = 'Tipos de Cargos'
 
-class obrero(models.Model):
+class obreros(models.Model):
     legajo = models.CharField(max_length=4, null=False, verbose_name='Legajo')
     cargo = models.ForeignKey(tipo_cargo, on_delete=models.CASCADE, blank=True, null=True)
     dni = models.CharField(max_length=8, null=False, verbose_name='DNI')
@@ -20,7 +20,7 @@ class obrero(models.Model):
     géneros = [('V', 'Varón'),('M', 'Mujer'),]
     género = models.CharField(max_length=1, choices=géneros)
     def __str__(self):
-        return '%s %s  %s'%(self.legajo, self.apellido, self.nombre)  
+        return '%s %s'%(self.apellido, self.nombre)  
     class Meta:
         db_table = 'obrero'
         verbose_name = 'obrero'
@@ -62,7 +62,7 @@ class material_de_epp(models.Model):
         verbose_name_plural = 'Materiales'
         
 class epp(models.Model):
-    nombre_epp = models.CharField(max_length=20, null=False, verbose_name='nombre_EPP')
+    nombre_epp = models.CharField(max_length=40, null=False, verbose_name='nombre_EPP')
     material = models.ForeignKey(material_de_epp, on_delete=models.CASCADE, blank=True, null=True)
     stock = models.PositiveIntegerField(default=100)
     def __str__(self):
@@ -74,7 +74,7 @@ class epp(models.Model):
         
 class orden_de_retiro(models.Model):
     codigo = models.PositiveIntegerField()
-    obrero = models.ForeignKey(obrero, on_delete=models.CASCADE, blank=True, null=True)
+    obrero = models.ForeignKey(obreros, on_delete=models.CASCADE, blank=True, null=True)
     epp = models.ForeignKey(epp, on_delete=models.CASCADE, blank=True, null=True)
     supervisor = models.ForeignKey(supervisor, on_delete=models.CASCADE, blank=True, null=True)
     retirado = models.BooleanField(default=False)
