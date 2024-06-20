@@ -60,27 +60,28 @@ class material_de_epp(models.Model):
         db_table = 'material'
         verbose_name = 'Material'
         verbose_name_plural = 'Materiales'
-        
+
 class epp(models.Model):
-    nombre_epp = models.CharField(max_length=40, null=False, verbose_name='nombre_EPP')
-    material = models.ForeignKey(material_de_epp, on_delete=models.CASCADE, blank=True, null=True)
-    stock = models.PositiveIntegerField(default=100)
+    nombre_epp = models.CharField(max_length=40, null=False, blank=True, default=0, verbose_name='Nombre del EPP')
+    material = models.ForeignKey(material_de_epp, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Material')
+    marca = models.CharField(max_length=40, null=True, blank=True, verbose_name='Marca')
+    stock = models.IntegerField(default=0, verbose_name='Stock')
     def __str__(self):
-        return '%s  %s'%(self.nombre_epp, self.material)  
+        return f"{self.nombre_epp} ({self.marca})"
     class Meta:
-        db_table = 'EPP'
-        verbose_name = 'EPP'
+        db_table = 'epp'
+        verbose_name = 'Elemento de Protección Personal'
         verbose_name_plural = 'Elementos de Protección Personal'
         
 class orden_de_retiro(models.Model):
     codigo = models.PositiveIntegerField()
     obrero = models.ForeignKey(obreros, on_delete=models.CASCADE, blank=True, null=True)
-    epp = models.ForeignKey(epp, on_delete=models.CASCADE, blank=True, null=True)
+    epp = models.ForeignKey(epp, on_delete=models.CASCADE, blank=True, null=False)
     supervisor = models.ForeignKey(supervisor, on_delete=models.CASCADE, blank=True, null=True)
     retirado = models.BooleanField(default=False)
     def __str__(self):
         return '%s  %s'%(self.codigo, self.epp)  
     class Meta:
-        db_table = 'orden de retiro'
-        verbose_name = 'orden de retiro'
+        db_table = 'Orden de retiro'
+        verbose_name = 'Orden de retiro'
         verbose_name_plural = 'Ordenes de Retiro'

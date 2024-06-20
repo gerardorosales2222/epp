@@ -16,7 +16,7 @@ def politica_privacidad(request):
 def soporte_tecnico(request):
     return render(request,'soporte.html')
 
-def obreros(request):
+def obreros_vista(request):
     o = obreros.objects.all()
     lista={'obreros':o}
     return render(request, 'obreros.html',lista)
