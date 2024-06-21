@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.db import models
+
 class tipo_cargo(models.Model):
     nombre_cargo = models.CharField(max_length=20, null=False, verbose_name='Nombre_Cargo')
     descripción = models.CharField(max_length=100, null=False, verbose_name='Descripción')
@@ -41,7 +43,7 @@ class supervisor(models.Model):
     dni = models.CharField(max_length=8, null=False, verbose_name='DNI')
     nombre = models.CharField(max_length=20, null=False, verbose_name='Nombre')
     apellido = models.CharField(max_length=20, null=False, verbose_name='Apellido')
-    cargo = models.ForeignKey(tipo_supervisor, on_delete=models.CASCADE, blank=True, null=True)
+    cargo = models.ForeignKey(tipo_supervisor, on_delete=models.CASCADE, blank=True, null=True,verbose_name='Tipo de Super')
     tel = models.CharField(max_length=10, null=False, verbose_name='Teléfono')
     géneros = [('V', 'Varón'),('M', 'Mujer'),]
     género = models.CharField(max_length=1, choices=géneros)
@@ -67,7 +69,19 @@ class epp(models.Model):
     marca = models.CharField(max_length=40, null=True, blank=True, verbose_name='Marca')
     stock = models.IntegerField(default=0, verbose_name='Stock')
     def __str__(self):
-        return f"{self.nombre_epp} ({self.marca})"
+        return '%s '%(self.nombre_epp) 
+    class Meta:
+        db_table = 'epp'
+        verbose_name = 'Elemento de Protección Personal'
+        verbose_name_plural = 'Elementos de Protección Personal'
+        
+class epp(models.Model):
+    nombre_epp = models.CharField(max_length=40, null=False, blank=True, default=0, verbose_name='Nombre del EPP')
+    material = models.ForeignKey(material_de_epp, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Material')
+    marca = models.CharField(max_length=40, null=True, blank=True, verbose_name='Marca')
+    stock = models.IntegerField(default=0, verbose_name='Stock')
+    def __str__(self):
+        return '%s '%(self.nombre_epp) 
     class Meta:
         db_table = 'epp'
         verbose_name = 'Elemento de Protección Personal'
@@ -80,7 +94,7 @@ class orden_de_retiro(models.Model):
     supervisor = models.ForeignKey(supervisor, on_delete=models.CASCADE, blank=True, null=True)
     retirado = models.BooleanField(default=False)
     def __str__(self):
-        return '%s  %s'%(self.codigo, self.epp)  
+        return '%s'%(self.epp)  
     class Meta:
         db_table = 'Orden de retiro'
         verbose_name = 'Orden de retiro'
