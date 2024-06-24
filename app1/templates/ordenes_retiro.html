@@ -15,8 +15,7 @@
             <th scope="col">Obrero</th>
             <th scope="col">EPP</th>
             <th scope="col">Supervisor</th>
-            <th scope="col">Retirado</th>
-            <th colspan="2"></th>
+            <th scope="col" style="text-align:center">Retirado</th>
         </tr>
         </thead>
         <tbody>
@@ -26,7 +25,9 @@
             <td>{{o.obrero}}</td>
             <td>{{o.epp}}</td>
             <td>{{o.supervisor}}</td>
-            <td>{{o.retirado}}</td>
+            <td style="text-align:center">
+              <input type="checkbox" {% if o.retirado %}checked{% endif %} disabled>
+            </td>
         </tr>
         {% endfor %}
         </tbody>
